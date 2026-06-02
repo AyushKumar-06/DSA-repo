@@ -175,6 +175,7 @@ int main(){
 }
 */
 //GCD using Euclidean algorithm
+/*
 int eucGCD(int n1,int n2){
     while(n1>0 && n2>0){
         if(n1>n2){
@@ -197,3 +198,5 @@ int main(){
     cin >> n1 >> n2;
     cout << "The GCD of " << n1 << " and " << n2 << " is " << eucGCD(n1,n2);
 }             
+*/
+
