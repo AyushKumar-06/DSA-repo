@@ -211,6 +211,7 @@ int main(){
 }
 */
 //Fibonnaci Number 
+/*
 int fibonnaci(int n){
     if(n<=1){
         return n;
@@ -225,3 +226,4 @@ int main(){
     cin >> n;
     cout << fibonnaci(n) << endl;
 }
+*/
