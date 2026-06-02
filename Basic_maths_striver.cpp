@@ -199,4 +199,3 @@ int main(){
     cout << "The GCD of " << n1 << " and " << n2 << " is " << eucGCD(n1,n2);
 }             
 */
-
