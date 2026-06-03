@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+/*
 int main(){
     int n;
     cout << "Enter the number of elements of array : ";
@@ -27,5 +28,29 @@ int main(){
         // fetch
         cout << "The number of times " << number << " is repeated is : ";
         cout << hash[number] << endl;
+    }
+}
+*/
+
+//charecter hashing
+int main(){
+    string s;
+    cout << "Enter a word : ";
+    cin >> s;
+
+    //precompute
+    int hash[26] = {0};
+    for(int i=0;i<s.size();i++){
+        hash[s[i]-'a']++;
+    }
+    int q;
+    cout << "Enter the number of alphabets you want the frequency of : ";
+    cin >> q;
+    while(q--){
+        char c;
+        cout << "Enter the alphabet you want to ask for : ";
+        cin >> c;
+        cout << "The frequency of the word " << c << " is : ";
+        cout << hash[c - 'a'] << endl;
     }
 }
