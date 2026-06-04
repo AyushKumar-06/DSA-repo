@@ -33,6 +33,7 @@ int main(){
 */
 
 //charecter hashing
+/*
 int main(){
     string s;
     cout << "Enter a word : ";
@@ -53,4 +54,36 @@ int main(){
         cout << "The frequency of the word " << c << " is : ";
         cout << hash[c - 'a'] << endl;
     }
+    return 0;
+}
+*/
+//hashing with map
+#include <map>
+
+int main(){
+    int n;
+    cout << "Enter the number of integers in array : ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter the elements of array : ";
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+
+    //precompute
+    map<int,int> mpp;
+    for(int i=0;i<n;i++){
+        mpp[arr[i]]++;
+    }
+
+    int q;
+    cout << "Enter the number of queries you want to ask : ";
+    cin >> q;
+    while(q--){
+        int num;
+        cout << "The number you want to ask about is : ";
+        cin >> num;
+        cout <<"The frequency of " <<  num << " is : " << mpp[num] << endl;
+    }
+    return 0;
 }
