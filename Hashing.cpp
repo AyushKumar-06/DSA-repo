@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//basic hashing
 /*
 int main(){
     int n;
@@ -31,7 +32,6 @@ int main(){
     }
 }
 */
-
 //charecter hashing
 /*
 int main(){
@@ -58,6 +58,7 @@ int main(){
 }
 */
 //hashing with map
+/*
 #include <map>
 
 int main(){
@@ -83,7 +84,54 @@ int main(){
         int num;
         cout << "The number you want to ask about is : ";
         cin >> num;
+        //fetch
         cout <<"The frequency of " <<  num << " is : " << mpp[num] << endl;
     }
     return 0;
 }
+*/
+//highest/lowest frequency element
+/*
+#include <map>
+#include <algorithm>
+int main(){
+    int n;
+    cout << "Enter the number of element in the array : ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter the elements of the array : ";
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+
+    //precompute
+    map<int,int> mpp;
+    for(int i=0;i<n;i++){
+        mpp[arr[i]]++;
+    }
+
+    int highfreq = -1;
+    int highelement = 0;
+
+    int lowfreq = n+1;
+    int lowelement = 0;
+
+    for(int i=0;i<n;i++){
+        if(mpp[arr[i]]>highfreq){
+            highfreq = mpp[arr[i]];
+            highelement = arr[i];
+        }
+    }
+
+    for(int i=0;i<n;i++){
+        if(mpp[arr[i]]<lowfreq){
+            lowfreq = mpp[arr[i]];
+            lowelement = arr[i];
+        }
+    }
+    cout << "The highest frequency is : " << highfreq << " of the element : " << highelement << endl;
+    cout << "The lowest frequency is : " << lowfreq << " of the element : " << lowelement << endl;
+
+    return 0;
+}
+*/
