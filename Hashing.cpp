@@ -135,3 +135,50 @@ int main(){
     return 0;
 }
 */
+//highest/lowest frequency element (optimised)
+/*
+#include <map>
+#include <algorithm>
+int main(){
+    int n;
+    cout << "Enter the number of element in the array : ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter the elements of the array : ";
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+
+    //precompute
+    map<int,int> mpp;
+    for(int i=0;i<n;i++){
+        mpp[arr[i]]++;
+    }
+
+    int maxFreq = 0;     
+    int maxElement = -1; 
+    
+    int minFreq = n + 1; 
+    int minElement = -1; 
+
+    for (auto it : mpp) {
+        int element = it.first;  
+        int count = it.second;  
+
+        if (count > maxFreq) {
+            maxFreq = count;
+            maxElement = element;
+        }
+
+        if (count < minFreq) {
+            minFreq = count;
+            minElement = element;
+        }
+    }
+
+    cout << "The highest frequency element is " << maxElement << " (Appears " << maxFreq << " times)" << endl;
+    cout << "The lowest frequency element is " << minElement << " (Appears " << minFreq << " times)" << endl;
+    
+    return 0;
+}
+*/
