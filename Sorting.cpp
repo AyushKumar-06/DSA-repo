@@ -113,3 +113,77 @@ int main(){
     return 0;
 }
 */
+
+//Merge sort
+#include <vector>
+//merge condition : combines the two sorted halves back together.
+void merge(int arr[],int low,int mid,int high){
+    vector<int> temp;       //temporary array to hold the sorted elements
+    int left = low;         //pointer for the left half
+    int right = mid+1;      //pointer for the right half
+
+    //compare the elements of the two halves and pushes the smaller one into temp
+    while(left<=mid && right<=high){
+        if(arr[left]<=arr[right]){
+            temp.push_back(arr[left]);
+            left++;
+        }
+        else{
+            temp.push_back(arr[right]);
+            right++;
+        }
+    }
+
+    //if any elements are left in the left half, pushes it into temp
+    while(left<=mid){
+        temp.push_back(arr[left]);
+        left++;
+    }
+
+    //if any elements are left in the right half, pushes it into temp
+    while(right<=high){
+        temp.push_back(arr[right]);
+        right++;
+    }
+
+    //transfers all the elements form 'temp' back to the orignal array 'arr'
+    for(int i=low;i<=high;i++){
+        arr[i]=temp[i-low];
+    }
+}
+
+//divides the given array in half recursively
+void mergesort(int arr[],int low,int high){
+    //return condition or base condition
+    if(low >= high){
+        return;
+    }
+
+    int mid = (low + high)/2;
+
+    //divide recursively the left half
+    mergesort(arr,low,mid);
+    //divide recursively the right half
+    mergesort(arr,mid+1,high);
+    //merge the 2 sorted half
+    merge(arr,low,mid,high);
+}
+
+int main(){
+    int n;
+    cout << "Enter the number of elements of the array : ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter the elements of the array : ";
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+
+    mergesort(arr,0,n-1);
+
+    cout << "The sorted array is : ";
+    for(int i=0;i<n;i++){
+        cout << arr[i] << " ";
+    }
+}
