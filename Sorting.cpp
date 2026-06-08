@@ -115,6 +115,7 @@ int main(){
 */
 
 //Merge sort
+/*
 #include <vector>
 //merge condition : combines the two sorted halves back together.
 void merge(int arr[],int low,int mid,int high){
@@ -187,3 +188,56 @@ int main(){
         cout << arr[i] << " ";
     }
 }
+*/
+
+//Quick sort
+/*
+#include <vector>
+
+int partition(vector<int> arr,int low,int high){
+    int pivot = arr[low];
+    int i = low;
+    int j = high;
+
+    while(i<j){
+        while(arr[i]<=pivot && i<=high-1){
+            i++;
+        }
+
+        while(arr[j]>pivot && j<=low+1){
+            j--;
+        }
+    }
+}
+
+void quicksort(vector<int> &arr,int low,int high){
+    if(low < high){
+        int pIndex = partition(arr,low,high);
+
+        quicksort(arr,low,pIndex-1);
+        quicksort(arr,pIndex+1,high);
+    }
+}
+
+int main(){
+    int n;
+    cout << "Enter the number of elements of the array : ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter the elements of the array : ";
+    for(int i=0;i<n;i++){
+        cin >> n;
+    }
+
+    quicksort(arr,0,n-1);
+
+    cout << "After sorting : ";
+    for(int i=0;i<n;i++){
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
+
+    return 0;
+}
+*/
