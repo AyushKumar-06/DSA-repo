@@ -35,8 +35,8 @@ int main(){
 }
 */
 
-//Second largest element in an array without Sorting
-
+//Second largest element in an array without Sorting (Self thought) (Better solution)
+/*
 int sec_largest(int arr[],int n){
     int largest = arr[0];
     int sec_large = 0;
@@ -67,3 +67,39 @@ int main(){
 
     cout << "The second largest element in array is : " << sec_largest(arr,n);
 }
+*/
+
+//Second largest element in an array (Optimal Solution)
+/*
+void sec_largest(int arr[],int n){
+    int largest = arr[0];
+    int slargest = -1;
+    for(int i=0;i<n;i++){
+        if(arr[i]>largest){
+            slargest = largest;
+            largest = arr[i];
+        }
+
+        else if(arr[i]<largest && arr[i]>slargest){
+            slargest = arr[i];
+        }
+    }
+}
+
+int main(){
+    int n;
+    cout << "Enter the number of elements in the array : ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter the elements of the array : ";
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+
+    sec_largest(arr,n);
+
+    return 0;
+}
+*/
+
