@@ -103,3 +103,35 @@ int main(){
 }
 */
 
+//Check if the array is sorted 
+#include <utility>
+void sorted(int arr[],int n){
+    //Using the optimised version of bubble sort
+    int compare = 1;
+    for(int i=0;i<n-1;i++){
+        if(arr[i]>arr[i+1]){
+            compare = 0;
+            break;
+        }
+    }
+    if(compare == 1){
+        cout << "The array is sorted ";
+    }
+    else{
+        cout << "The array is not sorted ";
+    }
+}
+
+int main(){
+    int n;
+    cout << "Enter the number of elements in the array : ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter the elements of the array : ";
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+
+    sorted(arr,n);
+}
