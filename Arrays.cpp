@@ -104,6 +104,7 @@ int main(){
 */
 
 //Check if the array is sorted 
+/*
 #include <utility>
 void sorted(int arr[],int n){
     //Using the optimised version of bubble sort
@@ -135,3 +136,43 @@ int main(){
 
     sorted(arr,n);
 }
+*/
+
+//Remove duplicated from sorted array
+/*
+#include <vector>
+
+int removeduplicates(vector<int>& sort){
+    int i = 0;
+    int j;
+    
+    for(j=1;j<sort.size();j++){
+        if(sort[j] != sort[i]){
+            sort[i+1] = sort[j];
+            i++;
+        }
+    }
+
+    return i+1;
+}
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+
+    vector<int> sort(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+         cin >> sort[i];
+    }
+
+    int unique_count = removeduplicates(sort);
+
+    cout << "The array after removing duplicates is : ";
+    for (int i = 0; i < unique_count; i++) {
+        cout << sort[i] << " ";
+    }
+
+    return 0;
+}
+*/
