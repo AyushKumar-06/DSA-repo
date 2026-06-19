@@ -343,3 +343,35 @@ int main(){
 }
 */
 
+//linear search
+int search(vector<int>& arr,int n,int k){
+    for(int i=0;i<n;i++){
+        if(arr[i] == k){
+            return i;
+        }
+    }
+    return -1;
+}
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+    
+    vector<int> nums(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+        cin >> nums[i];
+    }
+
+    int k;
+    cout << "Enter the number you want the indexing for : ";
+    cin >> k;
+
+    int index = search(nums,n,k);
+    if(index == -1){
+        cout << "The number was not within the given elements.";
+    }
+    else{
+    cout << "The indexing for " << k << " is : " << index;
+    }
+}
