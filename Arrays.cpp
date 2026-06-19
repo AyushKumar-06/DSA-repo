@@ -209,6 +209,7 @@ int main(){
 */
 
 //Rotate array by K elements
+/*
 #include <vector>
 #include <string>
 #include <utility>
@@ -272,3 +273,73 @@ int main(){
         cout << nums[i] << " ";
     }
 }
+*/
+
+//Move zeroes to the end
+/*
+#include <vector>
+#include <utility>
+
+vector<int> zeroes(vector<int>& arr,int n){
+
+    //  Self thought answer (worse than brute)
+    //     reason - TC = O(N^2) and SC = O(1)
+    //     brute had TC = O(N) and SC = O(N)
+
+    // for(int i=n-1;i>-1;i--){
+    //     if(arr[i] == 0){
+    //         for(int j=i;j<(n-1);j++){
+    //             swap(arr[j],arr[j+1]);
+    //         }
+    //     }
+    // }
+
+    // Optimal solution
+    int j = -1;
+
+    for(int i=0;i<n;i++){
+        if(arr[i] == 0){
+            j = i;
+            break;
+        }
+    }
+    if(j == -1){
+        return arr;
+    }
+
+    for(int i = j+1;j<n;j++){
+        if(arr[i] != 0){
+            swap(arr[i],arr[j]);
+            j++;
+        }
+    }
+
+    for(int i=n-1;i>-1;i--){
+        if(arr[i] == 0){
+            int temp = i;
+
+        }
+    }
+
+    return arr;
+}
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+
+    vector<int> nums(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+        cin >> nums[i];
+    }
+
+    zeroes(nums,n);
+
+    cout << "The final version is : ";
+    for(int i=0;i<n;i++){
+        cout << nums[i] << " ";
+    }
+}
+*/
+
