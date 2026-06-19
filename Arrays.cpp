@@ -176,3 +176,99 @@ int main(){
     return 0;
 }
 */
+
+//Left rotate the array by one
+/*
+#include <vector>
+int rotate_left(vector<int>& nums){
+    int temp = nums[0];
+    for(int i=1;i<nums.size();i++){
+        nums[i-1] = nums[i];
+    }
+    nums[nums.size()-1] = temp;
+}
+
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+    
+    vector<int> nums(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+        cin >> nums[i];
+    }
+
+    rotate_left(nums);
+
+    cout << "The left rotated array be one place is : ";
+    for(int i=0;i<n;i++){
+        cout << nums[i] << " ";
+    }
+}
+*/
+
+//Rotate array by K elements
+#include <vector>
+#include <string>
+#include <utility>
+
+void reversearray(vector<int>& nums,int start,int end){
+    while(start < end){
+        swap(nums[start],nums[end]);
+        start++;
+        end--;
+    }
+}
+
+vector<int> rotate(vector<int>& nums,int k,string dir){
+    int n = nums.size();
+
+    k = k % n;
+
+    if(dir == "right"){
+        //reverse the whole array 
+        reversearray(nums,0,n-1);
+        //reverse the first k elements
+        reversearray(nums,0,k-1);
+        //reverse rest of the elements
+        reversearray(nums,k,n-1);
+    }
+
+    else if(dir == "left"){
+        //reverse the first k elements
+        reversearray(nums,0,k-1);
+        //reverse rest of the elements
+        reversearray(nums,k,n-1);
+        //reverse the whole array
+        reversearray(nums,0,n-1);
+    }
+
+    return nums;
+
+}
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+
+    vector<int> nums(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+        cin >> nums[i];
+    }
+
+    int k;
+    cout << "Enter the number by which you want to rotate the array : ";
+    cin >> k;
+
+    string direction;
+    cout << "Enter the direction in which you want to rotate the array (left/right) : ";
+    getline(cin >> ws, direction);
+
+    rotate(nums,k,direction);
+
+    for(int i=0;i<n;i++){
+        cout << nums[i] << " ";
+    }
+}
