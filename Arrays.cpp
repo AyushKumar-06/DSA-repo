@@ -344,6 +344,7 @@ int main(){
 */
 
 //linear search
+/*
 int search(vector<int>& arr,int n,int k){
     for(int i=0;i<n;i++){
         if(arr[i] == k){
@@ -373,5 +374,120 @@ int main(){
     }
     else{
     cout << "The indexing for " << k << " is : " << index;
+    }
+}
+*/
+
+//union of 2 sorted arrays
+#include <vector>
+
+// My solution (Better)
+//  TC = O(N+M)
+// vector<int> removeduplicate(vector<int>& temp){
+//     int i;
+//     int j = 0;
+//     //Removing duplicates;
+//     for(i=1;i<temp.size();i++){
+//         if(temp[i] != temp[j]){
+//             temp[j+1] = temp[i];
+//             j++;
+//         }
+//     }
+//     temp.resize(j + 1);
+//     return temp;
+// }
+
+// vector<int> sortedunion(vector<int>& arr1,vector<int>& arr2,int n,int m){
+//     vector<int> temp;
+//     int left = 0;
+//     int right = 0;
+//     //Merging the 2 arrays
+//     while(left < n && right < m){
+//         if(arr1[left]<=arr2[right]){
+//             temp.emplace_back(arr1[left]);
+//             left++;
+//         }
+//         else{
+//             temp.emplace_back(arr2[right]);
+//             right++;
+//         }
+//     }
+
+//     while(left<n){
+//         temp.emplace_back(arr1[left]);
+//         left++;
+//     }
+
+//     while(right<m){
+//         temp.emplace_back(arr2[right]);
+//         right++;
+//     }
+
+//     removeduplicate(temp);
+
+//     return temp;
+// }
+
+vector<int> sortedunion(vector<int>& arr1,vector<int>& arr2,int n,int m){
+    int left = 0;
+    int right = 0;
+    vector<int> temp;
+    while(left<n && right<m){
+        if(arr1[left]<=arr2[right]){
+            if(temp.size() ==0 || temp.back() != arr1[left]){
+                temp.emplace_back(arr1[left]);
+            }
+            left++;
+        }
+        else{
+            if(temp.size() == 0 || temp.back() != arr2[right]){
+                temp.emplace_back(arr2[right]);
+            }
+            right++;
+        }
+    }
+
+        while(left < n){
+            if(temp.size() == 0 || temp.back() != arr1[left]){
+                temp.emplace_back(arr1[left]);
+            }
+            left++;
+        }
+
+        while(right < m){
+            if(temp.size() == 0 || temp.back() != arr2[right]){
+                temp.emplace_back(arr2[right]);
+            }
+            right++;
+        }
+    return temp;
+}
+
+int main(){
+    int n;
+    cout << "Enter the number of elements  of 1st array : ";
+    cin >> n;
+    
+    vector<int> nums1(n);
+    cout << "Enter the elements of 1st array : ";
+    for(int i=0;i<n;i++){
+        cin >> nums1[i];
+    }
+
+    int m;
+    cout << "Enter the number of elements in the 2nd array : ";
+    cin >> m;
+
+    vector<int> nums2(m);
+    cout << "Enter the elements of the 2nd array : ";
+    for(int i=0;i<m;i++){
+        cin >> nums2[i];
+    }
+
+    vector<int> arr = sortedunion(nums1,nums2,n,m);
+
+    cout << "The union of the two arrays is : ";
+    for(int i=0;i<arr.size();i++){
+        cout << arr[i] << " ";
     }
 }
