@@ -524,3 +524,35 @@ int main(){
     cout << missing_num(arr,n) << endl;
 }
 */
+
+//Maximum consecutive numbers 
+#include <vector>
+#include <algorithm>
+
+int consecutive_ones(vector<int>& nums){
+    int cnt = 0;
+    int cnt_max = 0;
+    for(int i=0;i<nums.size();i++){
+        if(nums[i] == 1){
+            cnt++;
+            cnt_max = max(cnt,cnt_max);
+        }
+        else{
+            cnt = 0;
+        }
+    }
+    return cnt_max;
+}
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+
+    vector<int> nums(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+        cin >> nums[i];
+    }
+
+    cout << consecutive_ones(nums);
+}
