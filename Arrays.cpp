@@ -525,7 +525,8 @@ int main(){
 }
 */
 
-//Maximum consecutive numbers 
+//Maximum consecutive ones
+/*
 #include <vector>
 #include <algorithm>
 
@@ -555,4 +556,30 @@ int main(){
     }
 
     cout << consecutive_ones(nums);
+}
+*/
+
+//Find the number that appers only once, and the other numbers twice
+#include<vector>
+
+int single(vector<int>& nums){
+    int single = nums[0];
+    for(int i=1;i<nums.size();i++){
+        single = single ^ nums[i];
+    }
+
+    return single;
+}
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+        cin >>arr[i];
+    }
+
+    cout << "The number that appears only once is : " << single(arr) << endl; 
 }
