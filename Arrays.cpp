@@ -379,6 +379,7 @@ int main(){
 */
 
 //union of 2 sorted arrays
+/*
 #include <vector>
 
 // My solution (Better)
@@ -428,6 +429,7 @@ int main(){
 //     return temp;
 // }
 
+// Optimised solution
 vector<int> sortedunion(vector<int>& arr1,vector<int>& arr2,int n,int m){
     int left = 0;
     int right = 0;
@@ -491,3 +493,34 @@ int main(){
         cout << arr[i] << " ";
     }
 }
+*/
+
+//Find the missing number
+/*
+#include <vector>
+
+int missing_num(vector<int>& num,int n){
+
+    long long expected_sum = (long long) (n+1) * (n+2) / 2;
+
+    long long actual_sum = 0;
+    for(int i=0;i<num.size();i++){
+        actual_sum += num[i];
+    }
+    return expected_sum - actual_sum;
+}
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+
+    cout << "The missing number is : ";
+    cout << missing_num(arr,n) << endl;
+}
+*/
