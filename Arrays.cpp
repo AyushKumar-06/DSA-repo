@@ -587,6 +587,7 @@ int main(){
 */
 
 //Longest subarray with given sum K(positive)
+/*
 #include <vector>
 #include <algorithm>
 
@@ -633,3 +634,44 @@ int main(){
 
     cout << "The number of elements that add upto " << k << " is : " << subarray(arr,k);
 }
+*/
+
+//Length of the longest subarray with zero Sum
+/*
+#include <map>
+#include <algorithm>
+int longest_subarray(vector<int>& nums){
+    int sum = 0;
+    int maxi = 0;
+    unordered_map<int,int> mpp;
+    for(int i=0;i<nums.size();i++){
+        sum = sum + nums[i];
+
+        if(sum == 0){
+            maxi = i+1;
+        }
+        else{
+            if(mpp.find(sum) != mpp.end()){
+                maxi = max(maxi, i - mpp[sum]);
+            }
+            else{
+                mpp[sum] = i;
+            }
+        }
+    }
+    return maxi;
+}
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+
+    longest_subarray(arr);
+}
+*/
