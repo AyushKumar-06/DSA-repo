@@ -560,6 +560,7 @@ int main(){
 */
 
 //Find the number that appers only once, and the other numbers twice
+/*
 #include<vector>
 
 int single(vector<int>& nums){
@@ -582,4 +583,53 @@ int main(){
     }
 
     cout << "The number that appears only once is : " << single(arr) << endl; 
+}
+*/
+
+//Longest subarray with given sum K(positive)
+#include <vector>
+#include <algorithm>
+
+int subarray(vector<int>& nums,int k){
+    int left = 0;
+    int right = 0;
+    int len = 0;
+    int max_len = 0;
+    long long sum = nums[0];
+    int n = nums.size();
+    while(right < n){    
+        while(left <= right && sum > k){
+            sum = sum - nums[left];
+            left++;
+        }
+
+        if(sum == k){
+            len = right - left + 1;
+            max_len = max(len,max_len);
+        }
+
+        right++;
+        if(right < n){
+            sum = sum + nums[right];
+        }
+    }
+    return max_len;
+
+}
+int main(){
+    int n;
+    cout << "Enter the number of elements : ";
+    cin >> n;
+
+    vector<int> arr(n);
+    cout << "Enter the elements : ";
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+
+    int k;
+    cout << "Enter the number you want to add up to : ";
+    cin >> k;
+
+    cout << "The number of elements that add upto " << k << " is : " << subarray(arr,k);
 }
