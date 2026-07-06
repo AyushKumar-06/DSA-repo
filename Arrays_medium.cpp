@@ -3,6 +3,7 @@ using namespace std;
 
 #include <vector>
 #include <map>
+#include <algorithm>
 
 //Two sum
 vector<int> two_sum(vector<int>& nums){
@@ -24,7 +25,27 @@ vector<int> two_sum(vector<int>& nums){
 }
 
 //Counting the number of 0s, 1s and 2s
-
+vector<int> count(vector<int>& nums){
+    int n = nums.size();
+    int low = 0;
+    int mid = 0;
+    int high = n-1;
+    while(mid<=high){
+        if(nums[mid] == 0){
+            swap(nums[low],nums[mid]);
+            low++;
+            mid++;
+        }
+        else if(nums[mid] == 1){
+            mid++;
+        }
+        else{
+            swap(nums[mid],nums[high]);
+            high--;
+        }
+    }
+    return nums;
+}
 
 int main(){
     int n;
@@ -44,5 +65,10 @@ int main(){
     //     cout << result[i] << " ";
     // }
 
+    vector<int> result = count(temp);
+    cout << "The sorted array is : " ;
+    for(int i=0;i<result.size();i++){
+        cout << result[i] << " ";
+    }
 
 }
