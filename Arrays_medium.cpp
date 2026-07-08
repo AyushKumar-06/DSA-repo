@@ -47,6 +47,56 @@ vector<int> count(vector<int>& nums){
     return nums;
 }
 
+//Majority element - 1
+//better approach
+int majority(vector<int>& nums){
+    int n = nums.size();
+    unordered_map<int,int> mpp;
+    for(int i=0;i<n;i++){
+        mpp[nums[i]]++;
+        if(mpp[nums[i]] > n/2){
+            return nums[i];
+        }
+    }
+    return -1;
+}
+//Optimal approach - A bit of deviation from Moore's voting algoritm
+int majority_optimal(vector<int>& nums){
+    int n = nums.size();
+    int cnt = 0;
+    int number = nums[0];
+    for(int i=0;i<n;i++){
+        if(nums[i] == number){
+            cnt++;
+        }
+        else{
+            cnt--;
+            if(cnt == 0){
+                number = nums[i];
+                cnt = 1;
+            }
+        }
+    }
+
+    return number;
+}
+//Optimal arrpoach - Moore's voting algorithm
+int majority_optimal_moore(vector<int>& nums){
+    int cnt = 0;
+    int candidate = 0;
+    for(int i=0;i<nums.size();i++){
+        if(cnt == 0){
+            candidate = nums[i];
+        }
+        else if(nums[i] == candidate){
+            cnt++;
+        }
+        else{
+            cnt--;
+        }
+    }
+}
+
 int main(){
     int n;
     cout << "Enter the number of elements : ";
@@ -65,10 +115,16 @@ int main(){
     //     cout << result[i] << " ";
     // }
 
-    vector<int> result = count(temp);
-    cout << "The sorted array is : " ;
-    for(int i=0;i<result.size();i++){
-        cout << result[i] << " ";
-    }
+    //Counting the number of 0s, 1s and 2s
+    // vector<int> result = count(temp);
+    // cout << "The sorted array is : " ;
+    // for(int i=0;i<result.size();i++){
+    //     cout << result[i] << " ";
+    // }
+
+    //Majority element - 1
+    majority(temp);
+    majority_optimal(temp);
+    majority_optimal_moore(temp);
 
 }
