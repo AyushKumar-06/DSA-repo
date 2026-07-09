@@ -97,6 +97,19 @@ int majority_optimal_moore(vector<int>& nums){
     }
 }
 
+//Kadane's algorithm
+int kadane(vector<int>& nums){
+    int sum = 0;
+    int max_sum = INT_MIN;
+    for(int i=0;i<nums.size();i++){
+        sum = sum + nums[i];
+        max_sum = max(max_sum,sum);
+        if(sum < 0){
+            sum = 0;
+        }
+    }
+    return max_sum;
+}
 int main(){
     int n;
     cout << "Enter the number of elements : ";
@@ -123,8 +136,11 @@ int main(){
     // }
 
     //Majority element - 1
-    majority(temp);
-    majority_optimal(temp);
-    majority_optimal_moore(temp);
+    // majority(temp);
+    // majority_optimal(temp);
+    // majority_optimal_moore(temp);
+
+    //Kadane's algorithm
+    cout << kadane(temp);
 
 }
