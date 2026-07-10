@@ -128,6 +128,24 @@ int stock(vector<int>& nums){
     }
     return max_profit;
 }
+
+//Rearrange array element by sign
+vector<int> rearrange(vector<int>& nums){
+    vector<int> pattern(nums.size());
+    int pos_index = 0;
+    int neg_index = 1;
+    for(int i=0;i<nums.size();i++){
+        if(nums[i] > 0){
+            pattern[pos_index] = nums[i];
+            pos_index += 2;
+            }
+        else{
+            pattern[neg_index] = nums[i];
+            neg_index += 2;
+        }
+    }
+    return pattern;
+}
 int main(){
     int n;
     cout << "Enter the number of elements : ";
@@ -162,5 +180,11 @@ int main(){
     // cout << kadane(temp);
 
     //Stock buy and sell
-    cout << stock(temp);
+    // cout << stock(temp);
+
+    //Rearrange element by sign
+    vector<int> result = rearrange(temp);
+    for(int i=0;i<result.size();i++){
+        cout << result[i];
+    }
 }
