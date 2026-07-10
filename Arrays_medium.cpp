@@ -170,6 +170,20 @@ vector<int> permutation(vector<int>& nums){
     reverse(nums.begin()+dip_index+1,nums.end());
 }
 
+//Leaders in an array
+vector<int> leader_in_arr(vector<int>& nums){
+    vector<int> temp;
+    int n = nums.size();
+    int leader = INT_MIN;
+    for(int i=n-1;i>-1;i--){
+        if(nums[i] > leader){
+            leader = nums[i];
+            temp.emplace_back(leader);
+        }
+    }
+    reverse(temp.begin(),temp.end());
+    return temp;
+}
 int main(){
     int n;
     cout << "Enter the number of elements : ";
