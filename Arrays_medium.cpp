@@ -110,6 +110,24 @@ int kadane(vector<int>& nums){
     }
     return max_sum;
 }
+
+//Stock buy and sell
+int stock(vector<int>& nums){
+    int today_price = 0;
+    int min_price_sofar = INT_MAX;
+    int max_profit = 0;
+
+    for(int i=0;i<nums.size();i++){
+        today_price = nums[i];
+        min_price_sofar = min(today_price,min_price_sofar);
+        
+        int profit = today_price - min_price_sofar ;
+        if(profit >= 0){
+            max_profit = max(profit,max_profit);
+        }
+    }
+    return max_profit;
+}
 int main(){
     int n;
     cout << "Enter the number of elements : ";
@@ -141,6 +159,8 @@ int main(){
     // majority_optimal_moore(temp);
 
     //Kadane's algorithm
-    cout << kadane(temp);
+    // cout << kadane(temp);
 
+    //Stock buy and sell
+    cout << stock(temp);
 }
