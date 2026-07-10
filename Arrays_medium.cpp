@@ -146,6 +146,30 @@ vector<int> rearrange(vector<int>& nums){
     }
     return pattern;
 }
+
+//Next permutation : find next lexicographically greater permutation
+vector<int> permutation(vector<int>& nums){
+    int n = nums.size();
+    int dip_index = -1;
+    for(int i=n-2;i>-1;i--){
+        if(nums[i] < nums[i+1]){
+            dip_index = i;
+            break;
+        }
+    }
+    if(dip_index == -1){
+        reverse(nums.begin(),nums.end());
+        return;
+    }
+    for(int j=n-1;j>dip_index;j--){
+        if(nums[j] > nums[dip_index]){
+            swap(nums[j],nums[dip_index]);
+            break;
+        }
+    }
+    reverse(nums.begin()+dip_index+1,nums.end());
+}
+
 int main(){
     int n;
     cout << "Enter the number of elements : ";
@@ -183,8 +207,14 @@ int main(){
     // cout << stock(temp);
 
     //Rearrange element by sign
-    vector<int> result = rearrange(temp);
+    // vector<int> result = rearrange(temp);
+    // for(int i=0;i<result.size();i++){
+    //     cout << result[i] << " ";
+    // }
+
+    //Next permutation : find the next lexicographically greater permutation
+    vector<int> result = permutation(temp);
     for(int i=0;i<result.size();i++){
-        cout << result[i];
+        cout << result[i] << " ";
     }
 }
