@@ -4,6 +4,7 @@ using namespace std;
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <unordered_set>
 
 //Two sum
 vector<int> two_sum(vector<int>& nums){
@@ -184,6 +185,29 @@ vector<int> leader_in_arr(vector<int>& nums){
     reverse(temp.begin(),temp.end());
     return temp;
 }
+
+//Longest Consecutive sequence in an array 
+int sequence(vector<int>& nums){
+    unordered_set<int> st;
+    for(int i=0;i<nums.size();i++){
+        st.insert(nums[i]);
+    }
+
+    int longest = 0;
+    for(int j=0;j<nums.size();j++){
+        int num = nums[j];
+        if(st.count(num - 1) == 0){
+            int start = num;
+            int streak = 1;
+            while(st.count(num+1) == 1){
+                streak++;
+                num++;
+            }
+            longest = max(longest,streak);
+        }
+    }
+    return longest;
+}
 int main(){
     int n;
     cout << "Enter the number of elements : ";
@@ -193,42 +217,5 @@ int main(){
     cout << "Enter the elements : ";
     for(int i=0;i<n;i++){
         cin >> temp[i];
-    }
-
-    //Two sum
-    // vector<int> result = two_sum(temp);
-    // cout << "The index of the two numbers equaling to " << k << " is " ;
-    // for(int i=0;i<result.size();i++){
-    //     cout << result[i] << " ";
-    // }
-
-    //Counting the number of 0s, 1s and 2s
-    // vector<int> result = count(temp);
-    // cout << "The sorted array is : " ;
-    // for(int i=0;i<result.size();i++){
-    //     cout << result[i] << " ";
-    // }
-
-    //Majority element - 1
-    // majority(temp);
-    // majority_optimal(temp);
-    // majority_optimal_moore(temp);
-
-    //Kadane's algorithm
-    // cout << kadane(temp);
-
-    //Stock buy and sell
-    // cout << stock(temp);
-
-    //Rearrange element by sign
-    // vector<int> result = rearrange(temp);
-    // for(int i=0;i<result.size();i++){
-    //     cout << result[i] << " ";
-    // }
-
-    //Next permutation : find the next lexicographically greater permutation
-    vector<int> result = permutation(temp);
-    for(int i=0;i<result.size();i++){
-        cout << result[i] << " ";
     }
 }
