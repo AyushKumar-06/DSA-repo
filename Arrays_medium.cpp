@@ -208,6 +208,23 @@ int sequence(vector<int>& nums){
     }
     return longest;
 }
+//Longest Consecutive sequence in an array - Leet Code Optimal solution
+int secquence_LC(vector<int>& nums){
+    unordered_set<int> st(nums.begin(),nums.end());
+
+    int longest = 0;
+    for(int num : st){
+        if(st.find(num - 1) == st.end()){
+            int streak = 1;
+            while(st.find(num + 1) != st.end()){
+                streak++;
+                num++;
+            }
+            longest = max(longest,streak);
+        }
+    }
+    return longest;
+}
 int main(){
     int n;
     cout << "Enter the number of elements : ";
