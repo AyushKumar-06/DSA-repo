@@ -249,7 +249,7 @@ void set_matrix(vector<vector<int>>& matrix){
 
     for(int i=1;i<rows;i++){
         for(int j=1;j<columns;j++){
-            if(matrix[i][0] == 0 && matrix[0][j] == 0){
+            if(matrix[i][0] == 0 || matrix[0][j] == 0){
                  matrix[i][j] = 0;
             }
         }
@@ -260,13 +260,27 @@ void set_matrix(vector<vector<int>>& matrix){
             matrix[0][j] = 0;
         }
     }
-    
+
     if(col0 == 0){
         for(int i=0;i<rows;i++){
             matrix[i][0] = 0;
         }
     }
 }
+
+//Rotate image by 90 degrees
+void rotate(vector<vector<int>>& matrix){
+    int n = matrix.size();
+    int m = matrix[0].size();
+
+    for(int i=0;i<n;i++){
+        for(int j=i;j<m;j++){
+            swap(matrix[i][j],matrix[j][i]);
+        }
+        reverse(matrix[i].begin(),matrix[i].end());
+    }
+}
+
 int main(){
     int n;
     cout << "Enter the number of elements : ";
