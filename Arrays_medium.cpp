@@ -281,8 +281,8 @@ void rotate(vector<vector<int>>& matrix){
     }
 }
 
-//Spiral traversal of matrix 
-void spiral(vector<vector<int>>& matrix){
+//Spiral traversal of matrix
+vector<int> spiral(vector<vector<int>>& matrix){
     vector<int> ans;
 
     int top = 0;
@@ -313,7 +313,31 @@ void spiral(vector<vector<int>>& matrix){
             left++;
         }
     }
+    return ans;
 }
+
+//Count subarray sum equal K
+int subarray_count(vector<int>& nums){
+    int k;
+    cout<< "Enter the number you want to find the subarrays for : ";
+    cin >> k;
+    unordered_map<int,int> mpp;
+    mpp[0] = 1;
+    int running_sum = 0;
+    int count = 0;
+    for(int i=0;i<nums.size();i++){
+        running_sum = running_sum + nums[i];
+        int req_sum = running_sum - k;
+        if(mpp.find(req_sum) != mpp.end()){
+            count = count + mpp[req_sum];
+        }
+
+        mpp[running_sum]++;
+    }
+    return count;
+}
+
+
 
 int main(){
     int n;
