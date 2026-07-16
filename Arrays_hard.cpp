@@ -97,6 +97,60 @@ vector<vector<int>> three_sum(vector<int>& nums){
     return ans;
 }
 
+//4 sum
+vector<vector<int>> four_sum(vector<int>& nums){
+    int k;
+    cout<<"Enter the target number : ";
+    cin >> k;
+
+    vector<vector<int>> ans;
+    sort(nums.begin(),nums.end());
+
+    int left,right;
+    int num1,num2,num3,num4;
+
+    for(int i=0;i<nums.size();i++){
+        if(i > 0 && nums[i] == nums[i-1]){
+            continue;
+        }
+        else{
+            num1 = nums[i];
+            for(int j=i+1;j<nums.size();j++){
+                if(j > i + 1 && nums[j] == nums[j-1]){
+                    continue;
+                }
+                else{
+                    num2 = nums[j];
+                    left = j + 1;
+                    right = nums.size() - 1;
+                    while(left < right){
+                        int target = k - num1 - num2;
+                        if(nums[left] + nums[right] == target){
+                            num3 = nums[left];
+                            num4 = nums[right];
+                            ans.push_back({num1,num2,num3,num4});
+                            left++;
+                            right--;
+                            while(left < right && nums[left] == nums[left - 1]){
+                                left++;
+                            }
+                            while(left < right && nums[right] == nums[right + 1]){
+                                right--;
+                            } 
+                        }
+                        else if(nums[left] + nums[right] < target){
+                            left++;
+                        }
+                        else{
+                            right--;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return ans;
+}
 
 int main(){
     int n;
