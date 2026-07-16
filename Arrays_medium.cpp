@@ -353,8 +353,8 @@ vector<vector<int>> pascal_triangle(int numRows){
 //Majority element - 2
 vector<int> majority_2(vector<int>& nums){
     vector<int> ans;
-    int num1 = nums[0];
-    int num2;
+    int num1 = INT_MIN;
+    int num2 = INT_MIN;
     int cnt1 = 1;
     int cnt2 = 0;
     for(int i=1;i<nums.size();i++){
