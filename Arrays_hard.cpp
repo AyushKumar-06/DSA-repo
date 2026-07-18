@@ -104,53 +104,76 @@ vector<vector<int>> four_sum(vector<int>& nums){
     cin >> k;
 
     vector<vector<int>> ans;
-    sort(nums.begin(),nums.end());
 
-    int left,right;
-    int num1,num2,num3,num4;
+        sort(nums.begin(),nums.end());
 
-    for(int i=0;i<nums.size();i++){
-        if(i > 0 && nums[i] == nums[i-1]){
-            continue;
-        }
-        else{
+        int left,right;
+        int num1,num2,num3,num4;
+
+        for(int i=0;i<nums.size();i++){
+            if(i > 0 && nums[i] == nums[i - 1]){
+                continue;
+            }
             num1 = nums[i];
-            for(int j=i+1;j<nums.size();j++){
-                if(j > i + 1 && nums[j] == nums[j-1]){
+            for(int j = i + 1;j<nums.size();j++){
+                if(j > i + 1 && nums[j] == nums[j - 1]){
                     continue;
                 }
-                else{
-                    num2 = nums[j];
-                    left = j + 1;
-                    right = nums.size() - 1;
-                    while(left < right){
-                        int target = k - num1 - num2;
-                        if(nums[left] + nums[right] == target){
-                            num3 = nums[left];
-                            num4 = nums[right];
-                            ans.push_back({num1,num2,num3,num4});
-                            left++;
-                            right--;
-                            while(left < right && nums[left] == nums[left - 1]){
-                                left++;
-                            }
-                            while(left < right && nums[right] == nums[right + 1]){
-                                right--;
-                            } 
-                        }
-                        else if(nums[left] + nums[right] < target){
+                num2 = nums[j];
+
+                left = j + 1;
+                right = nums.size() - 1;
+                while(left < right){
+                    num3 = nums[left];
+                    num4 = nums[right];
+                    long long sum = (long long)num1 + num2 + num3 + num4;
+                    if(sum == k){
+                        ans.push_back({num1,num2,num3,num4});
+                        left++;
+                        right--;
+                        while(left < right && nums[left] == nums[left - 1]){
                             left++;
                         }
-                        else{
+                        while(left < right && nums[right] == nums[right + 1]){
                             right--;
                         }
+                    }
+                    else if(sum > k){
+                        right--;
+                    }
+                    else{
+                        left++;
                     }
                 }
             }
         }
-    }
-    return ans;
+        return ans;
 }
+
+//Largest subarray with sum 0
+int largest_subarray(vector<int>& nums){
+    unordered_map<int,int> mpp;
+
+    int running_sum = 0;
+    int length = 0;
+    int max_length = 0;
+    for(int i=0;i<nums.size();i++){
+        running_sum += nums[i];
+        if(running_sum == 0){
+            length = i + 1;
+            max_length = max(length,max_length);
+        }
+        else if(mpp.find(running_sum) != mpp.end()){
+            length = i - mpp[running_sum];
+            max_length = max(max_length,length);
+        }
+        else{
+            mpp[running_sum] = i;
+        }
+    }
+    return max_length;
+}
+
 
 int main(){
     int n;
