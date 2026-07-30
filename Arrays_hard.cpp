@@ -174,6 +174,47 @@ int largest_subarray(vector<int>& nums){
     return max_length;
 }
 
+//Count the number of subarrays with given xor K
+int subarray_xor(vector<int>& nums){
+    int target;
+    cout<<"Enter the target number : ";
+    cin >> target;
+
+    unordered_map<int,int> mpp;
+    mpp[0] = 1; 
+
+    int running_xor = 0;
+    int count = 0;
+
+    for(int i=0;i<nums.size();i++){
+        running_xor = running_xor ^ nums[i];
+
+        int required_xor = running_xor ^ target;
+
+        if(mpp.find(required_xor) != mpp.end()){
+            count = count + mpp[required_xor];
+        }
+        mpp[running_xor]++;
+    }
+    return count;
+}
+
+//Merge overlapping Sub-intervals
+vector<vector<int>> overlapping_sub_intervals(vector<vector<int>>& matrix){
+    sort(matrix.begin(),matrix.end());
+    vector<vector<int>> ans;
+
+    for(int i=0;i<matrix.size();i++){
+    
+        if(ans.empty() || matrix[i][0] > ans.back()[1]){
+            ans.push_back(matrix[i]);
+        }
+        else{
+            ans.back()[1] = max(ans.back()[1],matrix[i][1]);
+        }
+    }
+    return ans;
+}
 
 int main(){
     int n;
