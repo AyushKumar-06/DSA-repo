@@ -216,6 +216,53 @@ vector<vector<int>> overlapping_sub_intervals(vector<vector<int>>& matrix){
     return ans;
 }
 
+//Find the repeating and missing numbers
+vector<int> elements(vector<int>& nums){
+    vector<int> ans;
+    unordered_map<int,int> mpp;
+
+    for(int i=0;i<nums.size();i++){
+        mpp[nums[i]]++;
+        if(mpp[nums[i]] == 2){
+            int twice = nums[i];
+            ans.push_back(nums[i]);
+        }
+    }
+    for(int i=1;i<=nums.size();i++){
+        if(mpp[i] == 0){
+            int missing = i;
+            ans.push_back(i);
+        }
+    }
+    return ans;
+}
+
+vector<int> elements_optimal(vector<int>& nums){
+    int n = nums.size();
+
+    int s1 = (n*(n+1))/2;
+    long long ss1 = (n*(n+1)*(2*n+1))/6;
+
+    int s2 = 0;
+    int ss2 = 0;
+    for(int i=0;i<n;i++){
+        s2 += nums[i];
+        ss2 += (long long)nums[i] * (long long)nums[i];
+    }
+
+    int val1 = s1 - s2;
+    long long val2 = ss1 - ss2;
+
+    val2 = val2/val1;
+
+    long long x = (val2 + val1)/2;
+    long long y = val2 - x;
+
+    return{(int)x,(int)y};
+}
+
+
+
 int main(){
     int n;
     cout << "Enter the number of elements : ";
