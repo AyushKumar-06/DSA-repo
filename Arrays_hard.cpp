@@ -389,6 +389,27 @@ int team(vector <int> & skill, int n)
     return mergesort(skill, 0, n - 1);
 }
 
+//Maximum product subarray in an array
+int max_prod(vector<int>& nums){
+    int n = nums.size();
+
+    int prefix = 1;
+    int suffix = 1;
+
+    int max_product = INT_MIN;
+
+    for(int i=0;i<n;i++){
+        if(suffix == 0) suffix = 1;
+        if(prefix == 0) prefix = 1;
+
+        prefix *= nums[i];
+        suffix *= nums[n-i-1];
+
+        max_product = max(max_product,max(suffix,prefix));
+    }
+    return max_product;
+}
+
 int main(){
     int n;
     cout << "Enter the number of elements : ";
