@@ -50,7 +50,7 @@ int upper_bound(vector<int>& nums, int target){
     int mid;
     int ans;
 
-    while(left <= right){
+    while(low <= high){
         mid = low + (high - low)/2;
 
         if(target < nums[mid]){
@@ -64,7 +64,26 @@ int upper_bound(vector<int>& nums, int target){
     return ans;
 }
 
+//Search insert position
+int insert(vector<int>& nums,int target){
+    int low = 0;
+    int high = nums.size() - 1;
+    int mid,pos;
 
+    while(low <= high){
+        mid = low + (high - low)/2;
+        if(nums[mid] >= target){
+            pos = mid;
+            high = mid - 1;
+        }
+        else{
+            low = mid + 1;
+            pos = mid + 1;
+        }
+        
+    }
+    return pos;
+}
 
 
 int main(){
