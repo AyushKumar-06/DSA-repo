@@ -43,6 +43,29 @@ int lower_bound(vector<int>& nums, int target){
     return ans;
 }
 
+//implement upper bound
+int upper_bound(vector<int>& nums, int target){
+    int low = 0;
+    int high = nums.size()-1;
+    int mid;
+    int ans;
+
+    while(left <= right){
+        mid = low + (high - low)/2;
+
+        if(target < nums[mid]){
+            ans = mid;
+            high = mid-1;
+        }
+        else{
+            low = mid+1;
+        }
+    }
+    return ans;
+}
+
+
+
 
 int main(){
 
